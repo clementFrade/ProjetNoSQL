@@ -1,0 +1,106 @@
+#Cassandra Clément Frade Lucas Marie
+#On utilise une simpleStrategy car le cluster n'est composé que d'un seul data-center et rack.
+#Replication factor inférieur ou égale au nombre de noeuds du cluster
+DESCRIBE KEYSPACES;
+
+CREATE KEYSPACE meteo WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 1 };
+
+USE meteo;
+
+CREATE TABLE InformationMeteo ( 
+    id UUID PRIMARY KEY, 
+    longitude text,
+    latitude text,  
+    horodate timestamp, 
+    temperature text, 
+    humidity text);
+
+#On créé une table InformationMeteo avec son id comme primary key
+
+INSERT INTO InformationMeteo 
+            ("id", "longitude", "latitude", "horodate", "temperature", "humidity") 
+     VALUES (uuid(),'4.982199','45.765358' , '2019-07-15', '26','40');
+
+INSERT INTO InformationMeteo 
+            ("id", "longitude", "latitude", "horodate", "temperature", "humidity") 
+     VALUES (uuid(),'4.982199','45.765358' , '2019-07-16', '22','45');
+
+#on insere dans cette table des exemples de relevés métérologique
+
+SELECT * FROM InformationMeteo;
+
+#on peut afficher toutes les données présent dans la table
+
+#Résultat :  id                                   | horodate                        | humidity | latitude  | longitude | temperature
+#--------------------------------------+---------------------------------+----------+-----------+-----------+-------------
+#52fdca88-dd91-44ce-9870-4e01bc3c59cd | 2019-07-15 22:00:00.000000+0000 |       45 | 45.765358 |  4.982199 |          22
+#00927bb1-50c0-4fcb-9277-47edf90ee8c4 | 2019-07-14 22:00:00.000000+0000 |       40 | 45.765358 |  4.982199 |          26
+
+SELECT * FROM InformationMeteo Where id = 52fdca88-dd91-44ce-9870-4e01bc3c59cd;
+
+#La seconde requete affiche seulement les informations correspondant à la station dont l'id est celui spécifié
+
+#Résultat: id                                   | horodate                        | humidity | latitude  | longitude | temperature
+#--------------------------------------+---------------------------------+----------+-----------+-----------+-------------
+#52fdca88-dd91-44ce-9870-4e01bc3c59cd | 2019-07-15 22:00:00.000000+0000 |       45 | 45.765358 |  4.982199 |          22
+
+#Nous allons maintenant créer une table ayant 2 clées pour rechercher également en fonction de l'horodate
+
+CREATE TABLE select_by_id_and_horodate (
+    id UUID, 
+    longitude text,
+    latitude text,  
+    horodate timestamp, 
+    temperature text, 
+    humidity text,
+    PRIMARY KEY (id, horodate));
+
+INSERT INTO select_by_id_and_horodate 
+            ("id", "longitude", "latitude", "horodate", "temperature", "humidity") 
+     VALUES (uuid(),'4.982199','45.765358' , '2019-07-16', '22','45');
+
+INSERT INTO select_by_id_and_horodate 
+            ("id", "longitude", "latitude", "horodate", "temperature", "humidity") 
+     VALUES (uuid(),'4.982199','45.765358' , '2019-07-18', '25','52');
+
+INSERT INTO select_by_id_and_horodate 
+            ("id", "longitude", "latitude", "horodate", "temperature", "humidity") 
+     VALUES (uuid(),'4.982199','45.765358' , '2019-07-15', '24','30');
+#Requete pour afficher les mesures pour une station donnée et avec une condition sur la date
+SELECT * FROM select_by_id_and_horodate where id= c1c6a6ce-cb53-4224-a4a9-a376db2b1cfd;
+SELECT * FROM select_by_id_and_horodate where id= c1c6a6ce-cb53-4224-a4a9-a376db2b1cfd and horodate<'2019-07-17';
+
+
+#Au cas où la recherche porte sur le nom de la station et pas un id autogénéré
+CREATE TABLE selectV2_by_id_and_horodate (
+    id UUID, 
+    identifiant text,
+    identifiant_num text,
+    longitude text,
+    latitude text,  
+    horodate timestamp, 
+    temperature text, 
+    humidity text,
+    PRIMARY KEY (identifiant, horodate));
+
+INSERT INTO selectV2_by_id_and_horodate 
+            ("id", "identifiant","identifiant_num","longitude", "latitude", "horodate", "temperature", "humidity") 
+     VALUES (uuid(),'Lyon','4.982199','1','45.765358' , '2019-07-16', '22','45');
+
+INSERT INTO selectV2_by_id_and_horodate 
+            ("id", "identifiant","identifiant_num", "longitude", "latitude", "horodate", "temperature", "humidity") 
+     VALUES (uuid(),'Lyon','4.982199','1','45.765358' , '2019-07-18', '25','52');
+
+INSERT INTO selectV2_by_id_and_horodate 
+            ("id", "identifiant","identifiant_num", "longitude", "latitude", "horodate", "temperature", "humidity") 
+     VALUES (uuid(),'Saint-etienne','2','4.982199','45.765358' , '2019-07-15', '24','30');
+
+SELECT * FROM selectV2_by_id_and_horodate;
+#Requete pour afficher les mesures pour une station donnée et avec une condition sur la date
+SELECT * FROM selectV2_by_id_and_horodate where identifiant='Lyon' and horodate<'2019-07-17';
+SELECT temperature,humidity FROM selectV2_by_id_and_horodate where identifiant='Lyon' and horodate<'2019-07-17';
+SELECT temperature,humidity FROM selectV2_by_id_and_horodate where identifiant='Lyon' and horodate<'2019-07-17' and horodate>'2019-07-15';
+
+# temperature | humidity
+#-------------+----------
+#          22 |       45

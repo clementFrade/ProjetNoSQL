@@ -1,0 +1,388 @@
+//MongoDB Clément Frade Lucas Marie
+//Insertion des équipes
+
+db.SoccerTeam.insert({
+   Name:'Olympique Lyonnais', 
+   Colors:['white','blue','red'],
+   Stadium:'Groupama Stadium',
+   Players:['Anthony lopes','Cyprian Tatarusanu','Leo Dubois','Rafael','Kenny Tete','Joachim Andersen','Jason Denayer',
+   'Marcelo','Oumar Solet','Youssouf Kone','Fernando Marcal','Lucas Tousart','Jean Lucas','Maxence Caqueret','Thiago Mendes','Houssem Aouar',
+    'Jeff-Reine Adélaide','Memphis Depay','Bertrand Traore','Maxwell Cornet','Moussa Dembele','Martin Terrier','Ryan Cherki','Amine Gouiri']
+});
+
+db.SoccerTeam.insert({
+   Name:'AS Saint-Etienne', 
+   Colors:['green','white'],
+   Stadium:'Geoffroy Guichard',
+   Players:['Stephane Ruffier','Jessy Moulin','Mathieu Debuchy','Franck Honorat','Loic Perrin','Thimothee Kolodziejczak','William Saliba',
+   'Gabriel Silva','Miguel Trauco','Yann Mvila','Wesley Fofana','Zaydou Youssouf','Romain Hamouma','Harold Moukoudi','Ryad Boudebouz','Madhi Camara',
+    'Wahbi Khazri','Charles Abi']
+});
+
+db.SoccerTeam.insert({
+   Name:'Paris SG', 
+   Colors:['blue','red'],
+   Stadium:'Parc des Princes',
+   Players:['Keylor Navas','Thomas Meunier','Thiago Silva','Marquinhos','Juan Bernat','Layvin Kurzawa','Marco Verratti',
+   'Idrissa Gueye','Presnel Kimpembe','Julian Draxler','Leandro Paredes','Edinson Cavani','Kylian Mbappe','Neymar','Mauro Icardi','Ander Herrera',
+    'Pablo Sarabia']
+});
+
+
+//Insertion des joueurs
+
+db.Players.insert({
+   Name:'Anthony', 
+   Surname:'Lopes',
+   DateOfBirth:new Date("1990-10-01"),
+   Height:1.86,
+   Weight:81,
+   Position:'Gk'  
+});
+
+db.Players.insert({
+   Name:'Ciprian', 
+   Surname:'Tatarusanu',
+   DateOfBirth:new Date("1986-02-09"),
+   Height:1.97,
+   Weight:90,
+   Position:'Gk'  
+});
+db.Players.insert({
+   Name:'Marcelo', 
+   Surname:'Guedes',
+   DateOfBirth:new Date("1987-05-25"),
+   Height:1.90,
+   Weight:79,
+   Position:'DC'  
+});
+db.Players.insert({
+   Name:'Jason', 
+   Surname:'Denayer',
+   DateOfBirth:new Date("1995-06-28"),
+   Height:1.86,
+   Weight:81,
+   Position:'DC'  
+});
+db.Players.insert({
+   Name:'Joachim', 
+   Surname:'Andersen',
+   DateOfBirth:new Date("1996-05-31"),
+   Height:1.92,
+   Weight:90,
+   Position:'DC'  
+});
+db.Players.insert({
+   Name:'Rafael', 
+   Surname:'DaSilva',
+   DateOfBirth:new Date("1990-07-09"),
+   Height:1.72,
+   Weight:78,
+   Position:'DD'  
+});
+db.Players.insert({
+   Name:'Leo', 
+   Surname:'Dubois',
+   DateOfBirth:new Date("1994-09-14"),
+   Height:1.78,
+   Weight:65,
+   Position:'DD'  
+});
+db.Players.insert({
+   Name:'Fernando', 
+   Surname:'Marcal',
+   DateOfBirth:new Date("1989-02-19"),
+   Height:1.78,
+   Weight:72,
+   Position:'DG'  
+});
+db.Players.insert({
+   Name:'Youssouf', 
+   Surname:'Koné',
+   DateOfBirth:new Date("1995-07-05"),
+   Height:1.74,
+   Weight:71,
+   Position:'DG'  
+});
+db.Players.insert({
+   Name:'Thiago', 
+   Surname:'Mendes',
+   DateOfBirth:new Date("1992-03-15"),
+   Height:1.76,
+   Weight:75,
+   Position:'MDC'  
+});
+db.Players.insert({
+   Name:'Lucas', 
+   Surname:'Tousart',
+   DateOfBirth:new Date("1997-04-29"),
+   Height:1.85,
+   Weight:83,
+   Position:'MDC'  
+});
+db.Players.insert({
+   Name:'Maxence', 
+   Surname:'Caqueret',
+   DateOfBirth:new Date("2000-02-15"),
+   Height:1.74,
+   Weight:63,
+   Position:'MDC'  
+});
+db.Players.insert({
+   Name:'Jean', 
+   Surname:'Lucas',
+   DateOfBirth:new Date("1998-06-22"),
+   Height:1.81,
+   Weight:78,
+   Position:'MC'  
+});
+db.Players.insert({
+   Name:'Houssem', 
+   Surname:'Aouar',
+   DateOfBirth:new Date("1998-06-30"),
+   Height:1.75,
+   Weight:70,
+   Position:'MC'  
+});
+db.Players.insert({
+   Name:'Jeff', 
+   Surname:'Reine-Adelaide',
+   DateOfBirth:new Date("1998-01-17"),
+   Height:1.83,
+   Weight:75,
+   Position:'MO'  
+});
+db.Players.insert({
+   Name:'Rayan', 
+   Surname:'Cherki',
+   DateOfBirth:new Date("2003-08-17"),
+   Height:1.73,
+   Weight:70,
+   Position:'MO'  
+});
+db.Players.insert({
+   Name:'Karl', 
+   Surname:'Toko-Ekambi',
+   DateOfBirth:new Date("1992-09-14"),
+   Height:1.83,
+   Weight:70,
+   Position:'BU'  
+});
+db.Players.insert({
+   Name:'Moussa', 
+   Surname:'Dembele',
+   DateOfBirth:new Date("1996-07-12"),
+   Height:1.83,
+   Weight:74,
+   Position:'BU'  
+});
+db.Players.insert({
+   Name:'Bertrand', 
+   Surname:'Traore',
+   DateOfBirth:new Date("1995-09-06"),
+   Height:1.81,
+   Weight:73,
+   Position:'AD'  
+});
+db.Players.insert({
+   Name:'Maxwell', 
+   Surname:'Cornet',
+   DateOfBirth:new Date("1996-09-27"),
+   Height:1.79,
+   Weight:69,
+   Position:'AD'  
+});
+db.Players.insert({
+   Name:'Martin', 
+   Surname:'Terrier',
+   DateOfBirth:new Date("1997-03-04"),
+   Height:1.84,
+   Weight:71,
+   Position:'AG'  
+});
+
+db.Players.insert({
+   Name:'Fabien', 
+   Surname:'Centonze',
+   DateOfBirth:new Date("1995-05-28"),
+   Height:1.84,
+   Weight:71,
+   Position:'DD'  
+});
+
+db.Players.insert({
+   Name:'Franck', 
+   Surname:'Honorat',
+   DateOfBirth:new Date("1995-05-28"),
+   Height:1.84,
+   Weight:71,
+   Position:'DD'  
+});
+
+db.Players.insert({
+   Name:'Youcef', 
+   Surname:'Atal',
+   DateOfBirth:new Date("1996-05-17"),
+   Height:1.76,
+   Weight:64,
+   Position:'DD'  
+});
+
+db.Players.insert({
+   Name:'Mohamed', 
+   Surname:'Simakan',
+   DateOfBirth:new Date("2000-05-03"),
+   Height:1.87,
+   Weight:82,
+   Position:'DD'  
+});
+
+db.Players.insert({
+   Name:'Colin', 
+   Surname:'Dagba',
+   DateOfBirth:new Date("1998-09-09"),
+   Height:1.70,
+   Weight:62,
+   Position:'DD'  
+});
+
+db.Players.insert({
+   Name:'Benjamin', 
+   Surname:'Henrichs',
+   DateOfBirth:new Date("1997-02-23"),
+   Height:1.83,
+   Weight:70,
+   Position:'DD'  
+});
+
+//Insertion des matchs   
+db.match.insert({
+   team1: "AS Saint-Etienne", 
+   team2: "Olympique Lyonnais",
+   competition: "Ligue 1",
+   scoreA: 0,
+   scoreB: 5, 
+   players1: [{name: "Stephane Ruffier", score: 3.0},	
+		{name: "Loic Perrin", score: 4.0},
+                {name: "William Saliba", score: 4.0},
+                {name: "Weslay Fofana", score: 5.0},
+                {name: "Franck Honorat", score: 4.0},
+                {name: "Madhi Camara", score: 5.0},
+                {name: "Yann Mvila", score: 4.5},
+                {name: "Miguel Trauco", score: 3.0},
+                {name: "Wahbi Khazri", score: 4.0},
+                {name: "Romain Hamouma", score: 4.0},
+                {name: "Lois Diony", score: 5.0}
+       ],
+ players2: [{name: "Anthony Lopes", score: 5.0},
+                {name: "Leo Dubois", score: 6.0},
+                {name: "Mawxell Cornet", score: 5.5},
+                {name: "Marcelo", score: 5.0},
+                {name: "Jason Denayer", score: 6.0},
+                {name: "Maxence Caqueret", score: 6.5},
+                {name: "Bertrand Traore", score: 7.0},
+                {name: "Lucas Tousart", score: 6.0},
+                {name: "Houssem Aouar", score: 8.0},
+                {name: "Moussa Dembele", score: 8.0},
+                {name: "Memphis Depay", score: 9.0}
+       ]
+});
+
+db.match.insert({
+   team1: "Paris SG", 
+   team2: "Olympique Lyonnais",
+   competition: "Ligue 1",
+   scoreA: 0,
+   scoreB: 2, 
+   players1: [{name: "Keylor Navas", score: 5.5},	
+		{name: "Thomas Meunier", score: 4.0},
+                {name: "Thiago Silva", score: 4.0},
+                {name: "Marquinhos", score: 5.0},
+                {name: "Juan Bernat", score: 4.0},
+                {name: "Marco Verratti", score: 5.0},
+                {name: "Idrissa Gueye", score: 4.5},
+                {name: "Pablo Sarabia", score: 3.0},
+                {name: "Neymar", score: 4.0},
+                {name: "Kylian Mbappe", score: 4.0},
+                {name: "Mauro Icardi", score: 5.0}
+       ],
+ players2: [{name: "Anthony Lopes", score: 7.0},
+                {name: "Leo Dubois", score: 6.0},
+                {name: "Mawxell Cornet", score: 5.0},
+                {name: "Marcelo", score: 4.5},
+                {name: "Jason Denayer", score: 6.0},
+                {name: "Maxence Caqueret", score: 7.0},
+                {name: "Bertrand Traore", score: 6.0},
+                {name: "Lucas Tousart", score: 5.5},
+                {name: "Houssem Aouar", score: 6.0},
+                {name: "Moussa Dembele", score: 7.0},
+                {name: "Memphis Depay", score: 6.0}
+       ]
+});
+
+db.match.insert({
+   team1: "Olympique Lyonnais", 
+   team2: "AS Saint-Etienne",
+   competition: "Ligue 1",
+   scoreA: 3,
+   scoreB: 1, 
+
+ players1: [{name: "Anthony Lopes", score: 5.0},
+                {name: "Leo Dubois", score: 6.5},
+                {name: "Mawxell Cornet", score: 5.0},
+                {name: "Marcelo", score: 5.5},
+                {name: "Jason Denayer", score: 6.0},
+                {name: "Maxence Caqueret", score: 6.0},
+                {name: "Bertrand Traore", score: 5.0},
+                {name: "Lucas Tousart", score: 5.5},
+                {name: "Houssem Aouar", score: 7.0},
+                {name: "Moussa Dembele", score: 6.0},
+                {name: "Memphis Depay", score: 7.5}
+       ],
+   players2: [{name: "Stephane Ruffier", score: 4.0},	
+		{name: "Loic Perrin", score: 4.5},
+                {name: "William Saliba", score: 4.5},
+                {name: "Weslay Fofana", score: 4.5},
+                {name: "Franck Honorat", score: 5.0},
+                {name: "Madhi Camara", score: 4.0},
+                {name: "Yann Mvila", score: 3.5},
+                {name: "Miguel Trauco", score: 4.0},
+                {name: "Wahbi Khazri", score: 4.5},
+                {name: "Romain Hamouma", score: 5.0},
+                {name: "Lois Diony", score: 5.0}
+       ]
+});
+
+//Pour optimiser les recherches on met des indexes sur le nom des équipes et sur le nom des joueurs.
+db.SoccerTeam.ensureIndex({"Name":1});
+db.Players.ensureIndex({"Name":1});
+
+
+//On affiche tous les joueurs qui sont défenseur latéraux et qui ont moins de 25 ans. 
+db.Players.find({
+$and : [      
+            {Position: "DD"},
+            {DateOfBirth: { $gt: new Date('1995-02-23') }}
+        ]
+}
+).pretty();
+
+//Avec $project on remodeler la collection pour y attribuer les joueurs des deux équipes présent sur la feuille de match
+//Avec $unwind on sépare le tableau player en autant d'objets que d'éléments.
+//Avec $group on fait un group by avec le nom du joueur le nombre de match (avec $sum) et sa moyenne (grâce à $avg).
+//Avec $match on sélectionne dans la collection tous les joueurs qui ont réalisé au minimun 2 matchs.
+db.match.aggregate([
+        {
+	$project: {
+            player: {$concatArrays: ["$players1", "$players2"]}
+	}}, {
+	$unwind: "$player"
+	},{
+	$group: {
+	_id: {name: "$player.name"},
+        nbmatch: {$sum: 1},
+	scoreAvg: {$avg: "$player.score"}
+	}}, {
+	$match: {nbmatch: {$gte: 2}}
+	}
+]).pretty();
