@@ -1,0 +1,16 @@
+projet neo4j Frade Marie
+
+On commence par créer des entreprise :
+CREATE (:Enterprise {name: 'andris', description:'stage', secteur:'Consulting', taille:'1500'})
+CREATE (:Enterprise {name: 'Amazon', description:'les rois de la livraison', secteur:'Divers', taille:'600000'})
+CREATE (:Enterprise {name: 'Google', description:'geant', secteur:'Numerique', taille:'400000'})
+CREATE (:Enterprise {name: 'solutec', description:'stage', secteur:'Consulting', taille:'1500'})
+CREATE (:Enterprise {name: 'TELECOM', description:'This is a great description.', secteur:'School', taille:'700'})
+
+Puis des utilisateurs :
+CREATE (:User {name: 'thibaud', description:'present', competences:['html', 'java']})
+CREATE (:User {name: 'Jeff', description:'Bessos', competences:['gestion', 'espace']})
+CREATE (:User {name: 'Clement', description:'yo', competences:['gestion', 'javascript']})
+CREATE (:User {name: 'Lucas', description:'salut', competences:['java', 'php']})
+
+On s'occupe ensuite de relier les entreprises aux utilisateurs ;
