@@ -13,4 +13,42 @@ CREATE (:User {name: 'Jeff', description:'Bessos', competences:['gestion', 'espa
 CREATE (:User {name: 'Clement', description:'yo', competences:['gestion', 'javascript']})
 CREATE (:User {name: 'Lucas', description:'salut', competences:['java', 'php']})
 
-On s'occupe ensuite de relier les entreprises aux utilisateurs ;
+On s'occupe ensuite de relier les entreprises aux utilisateurs :
+match (a:User),(b:Enterprise) where a.name="Lucas" and b.name="TELECOM" create (a)-[:hasWorkedFor {start:'2016',end:'2020',statut:'student'}]->(b)
+match (a:User),(b:Enterprise) where a.name="thibaud" and b.name="TELECOM" create (a)-[:hasWorkedFor {start:'2016',end:'2020',statut:'student'}]->(b)
+match (a:User),(b:Enterprise) where a.name="Clement" and b.name="TELECOM" create (a)-[:hasWorkedFor {start:'2013',end:'2020',statut:'student'}]->(b)
+match (a:User),(b:Enterprise) where a.name="Lucas" and b.name="solutec" create (a)-[:hasWorkedFor {start:'2020',end:'2020',statut:'trainee'}]->(b)
+match (a:User),(b:Enterprise) where a.name="Clement" and b.name="andris" create (a)-[:hasWorkedFor {start:'2020',end:'2020',statut:'trainee'}]->(b)
+match (a:User),(b:Enterprise) where a.name="Jeff" and b.name="Amazon" create (a)-[:hasWorkedFor {start:'1994',end:'2020',statut:'boss'}]->(b)
+
+Puis des relations entre utilisateurs :
+match (a:User),(b:User) where a.name="Lucas" and b.name="thibaud" create (a)-[:hasWorkedwith]->(b)
+match (a:User),(b:User) where b.name="Lucas" and a.name="thibaud" create (a)-[:hasWorkedwith]->(b)
+match (a:User),(b:User) where a.name="Lucas" and b.name="Clement" create (a)-[:hasWorkedwith]->(b)
+match (a:User),(b:User) where b.name="Lucas" and a.name="Clement" create (a)-[:hasWorkedwith]->(b)
+match (a:User),(b:User) where a.name="Clement" and b.name="thibaud" create (a)-[:hasWorkedwith]->(b)
+match (a:User),(b:User) where b.name="Clement" and a.name="thibaud" create (a)-[:hasWorkedwith]->(b)
+match (a:User),(b:User) where a.name="Lucas" and b.name="Jeff" create (a)-[:know]->(b)
+match (a:User),(b:User) where a.name="Clement" and b.name="Jeff" create (a)-[:know]->(b)
+match (a:User),(b:User) where a.name="thibaud" and b.name="Jeff" create (a)-[:know]->(b)
+
+Une fois les entités et les relations créées nous pouvois effectuer des requètes de recherche :
+match (a:User) where a.name = "Lucas" return a
+Dans ce cas-ci, on cherche un utilisateur qui s'apelle 'lucas'. Pour effectuer une recherche sur un entreprise il suffit de remplacer User par Enterprise dans la définition de la variable a. 
+
+On peut aussi modifier les données sauvegardées en utilisant 'set' par exemple :
+match (a:User) where (a.name='Lucas') set a.description='Nouvelle description'
+
+Pour exprimer des requêtes de suggestions de relations nous utilisons une requète de type :
+match (a:User {name:'Lucas'})-[:hasWorkedwith]->(b:User) return b
+Dans ce cas-ci, on cherche les utilisateurs ayant travaillé avec 'Lucas'.
+
+A partir de ceci, nous pouvons retrouver des connaissances de connaissances d'un utilisateur : 
+match (a:User {name:'Lucas'})-[:hasWorkedwith]->(b:User) match (b)-[:know]->(c:User) return c
+Dans ce cas-ci, on obtient 'Jeff' comme résultat.
+
+On peut aussi faire d'autres requètes comme celle permettant de retrouver des personnes ayant travaillé dans la même entreprise en même temps : 
+match (a:User)-[r:hasWorkedFor]->(b:Enterprise) where a.name='Lucas' match (u:User)-[h:hasWorkedFor]->(b) where u<>a and (r.start <=h.end <= r.end or r.start <=h.start <= r.end) return u
+
+Bien sur ces requètes peuvent être retranscrit en utilisant un langage de code comme le python dans un cas réel.
+
